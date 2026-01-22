@@ -1,0 +1,65 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+plan.md
+prompt.md
+*.md
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+bin/
+dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test files and coverage
+*_test.go
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Claude AI files
+.claude/
+
+# Docker files (no need to include these in the image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# CI/CD files
+.github/
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# Dependency cache (will be rebuilt in Docker)
+vendor/

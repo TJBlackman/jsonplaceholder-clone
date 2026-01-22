@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONPlaceholder Clone - Go API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .content {
+            background: white;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #667eea;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        h3 {
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .resource-card {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .resource-card h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .resource-card a {
+            color: #764ba2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .badge-get { background: #61affe; color: white; }
+        .badge-post { background: #49cc90; color: white; }
+        .badge-put { background: #fca130; color: white; }
+        .badge-patch { background: #50e3c2; color: white; }
+        .badge-delete { background: #f93e3e; color: white; }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .note strong {
+            color: #856404;
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JSONPlaceholder Clone</h1>
+        <p>A RESTful API service built with Go - Perfect for testing and prototyping</p>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <h2>Welcome</h2>
+            <p>
+                This is a Go implementation of JSONPlaceholder, providing a fake REST API for testing and prototyping.
+                All data is hard-coded and static. Write operations (POST, PUT, PATCH, DELETE) return mocked responses
+                but do not persist data.
+            </p>
+
+            <div class="note">
+                <strong>Note:</strong> This API is for development and testing purposes. No data is actually stored or modified.
+            </div>
+
+            <h2>Resources</h2>
+            <p>The API provides 6 resource types with 5 items each:</p>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>Posts</h3>
+                    <p>5 posts available</p>
+                    <a href="/posts">/posts</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Comments</h3>
+                    <p>5 comments available</p>
+                    <a href="/comments">/comments</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Albums</h3>
+                    <p>5 albums available</p>
+                    <a href="/albums">/albums</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Photos</h3>
+                    <p>5 photos available</p>
+                    <a href="/photos">/photos</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Todos</h3>
+                    <p>5 todos available</p>
+                    <a href="/todos">/todos</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Users</h3>
+                    <p>5 users available</p>
+                    <a href="/users">/users</a>
+                </div>
+            </div>
+
+            <h2>Example JSON Responses</h2>
+
+            <h3>Post</h3>
+            <pre><code>{
+  "id": 1,
+  "userId": 1,
+  "title": "sunt aut facere repellat",
+  "body": "quia et suscipit..."
+}</code></pre>
+
+            <h3>Comment</h3>
+            <pre><code>{
+  "id": 1,
+  "postId": 1,
+  "name": "id labore ex et quam",
+  "email": "Eliseo@gardner.biz",
+  "body": "laudantium enim..."
+}</code></pre>
+
+            <h3>Album</h3>
+            <pre><code>{
+  "id": 1,
+  "userId": 1,
+  "title": "quidem molestiae enim"
+}</code></pre>
+
+            <h3>Photo</h3>
+            <pre><code>{
+  "id": 1,
+  "albumId": 1,
+  "title": "accusamus beatae ad",
+  "url": "https://via.placeholder.com/600/92c952",
+  "thumbnailUrl": "https://via.placeholder.com/150/92c952"
+}</code></pre>
+
+            <h3>Todo</h3>
+            <pre><code>{
+  "id": 1,
+  "userId": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}</code></pre>
+
+            <h3>User</h3>
+            <pre><code>{
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "address": {
+    "street": "Kulas Light",
+    "suite": "Apt. 556",
+    "city": "Gwenborough",
+    "zipcode": "92998-3874",
+    "geo": {
+      "lat": "-37.3159",
+      "lng": "81.1496"
+    }
+  },
+  "phone": "1-770-736-8031 x56442",
+  "website": "hildegard.org",
+  "company": {
+    "name": "Romaguera-Crona",
+    "catchPhrase": "Multi-layered client-server neural-net",
+    "bs": "harness real-time e-markets"
+  }
+}</code></pre>
+
+            <h2>Routes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Route</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/posts</td>
+                        <td>List all posts</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/posts/:id</td>
+                        <td>Get post by ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/posts/:id/comments</td>
+                        <td>Get comments for a post</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-post">POST</span></td>
+                        <td>/posts</td>
+                        <td>Create post (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-put">PUT</span></td>
+                        <td>/posts/:id</td>
+                        <td>Replace post (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-patch">PATCH</span></td>
+                        <td>/posts/:id</td>
+                        <td>Update post (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">DELETE</span></td>
+                        <td>/posts/:id</td>
+                        <td>Delete post (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/comments</td>
+                        <td>List all comments</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/comments/:id</td>
+                        <td>Get comment by ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-post">POST</span></td>
+                        <td>/comments</td>
+                        <td>Create comment (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-put">PUT</span></td>
+                        <td>/comments/:id</td>
+                        <td>Replace comment (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-patch">PATCH</span></td>
+                        <td>/comments/:id</td>
+                        <td>Update comment (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">DELETE</span></td>
+                        <td>/comments/:id</td>
+                        <td>Delete comment (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/albums</td>
+                        <td>List all albums</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/albums/:id</td>
+                        <td>Get album by ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/albums/:id/photos</td>
+                        <td>Get photos for an album</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-post">POST</span></td>
+                        <td>/albums</td>
+                        <td>Create album (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-put">PUT</span></td>
+                        <td>/albums/:id</td>
+                        <td>Replace album (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-patch">PATCH</span></td>
+                        <td>/albums/:id</td>
+                        <td>Update album (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">DELETE</span></td>
+                        <td>/albums/:id</td>
+                        <td>Delete album (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/photos</td>
+                        <td>List all photos</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/photos/:id</td>
+                        <td>Get photo by ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-post">POST</span></td>
+                        <td>/photos</td>
+                        <td>Create photo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-put">PUT</span></td>
+                        <td>/photos/:id</td>
+                        <td>Replace photo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-patch">PATCH</span></td>
+                        <td>/photos/:id</td>
+                        <td>Update photo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">DELETE</span></td>
+                        <td>/photos/:id</td>
+                        <td>Delete photo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/todos</td>
+                        <td>List all todos</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/todos/:id</td>
+                        <td>Get todo by ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-post">POST</span></td>
+                        <td>/todos</td>
+                        <td>Create todo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-put">PUT</span></td>
+                        <td>/todos/:id</td>
+                        <td>Replace todo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-patch">PATCH</span></td>
+                        <td>/todos/:id</td>
+                        <td>Update todo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">DELETE</span></td>
+                        <td>/todos/:id</td>
+                        <td>Delete todo (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/users</td>
+                        <td>List all users</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/users/:id</td>
+                        <td>Get user by ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/users/:id/posts</td>
+                        <td>Get posts by user</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/users/:id/albums</td>
+                        <td>Get albums by user</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-get">GET</span></td>
+                        <td>/users/:id/todos</td>
+                        <td>Get todos by user</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-post">POST</span></td>
+                        <td>/users</td>
+                        <td>Create user (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-put">PUT</span></td>
+                        <td>/users/:id</td>
+                        <td>Replace user (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-patch">PATCH</span></td>
+                        <td>/users/:id</td>
+                        <td>Update user (mocked)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">DELETE</span></td>
+                        <td>/users/:id</td>
+                        <td>Delete user (mocked)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Query Parameters</h2>
+
+            <h3>Filtering</h3>
+            <p>Filter results by any field using query parameters:</p>
+            <pre><code>GET /posts?userId=1
+GET /comments?postId=1
+GET /albums?userId=2
+GET /photos?albumId=1
+GET /todos?userId=1&completed=true</code></pre>
+
+            <h3>Pagination</h3>
+            <p>Use <code>_page</code> and <code>_limit</code> to paginate results:</p>
+            <pre><code>GET /posts?_page=1&_limit=2
+GET /comments?_page=2&_limit=3</code></pre>
+            <ul>
+                <li><code>_page</code>: Page number (default: 1)</li>
+                <li><code>_limit</code>: Items per page (default: all items)</li>
+            </ul>
+
+            <h3>Artificial Delay</h3>
+            <p>Add artificial delay to responses (useful for testing loading states):</p>
+            <pre><code>GET /posts?_delay=2000</code></pre>
+            <ul>
+                <li><code>_delay</code>: Delay in milliseconds (max: 10000ms)</li>
+            </ul>
+
+            <h2>Example cURL Commands</h2>
+
+            <h3>Get all posts</h3>
+            <pre><code>curl http://localhost:3000/posts</code></pre>
+
+            <h3>Get a specific post</h3>
+            <pre><code>curl http://localhost:3000/posts/1</code></pre>
+
+            <h3>Get comments for a post</h3>
+            <pre><code>curl http://localhost:3000/posts/1/comments</code></pre>
+
+            <h3>Filter posts by user</h3>
+            <pre><code>curl http://localhost:3000/posts?userId=1</code></pre>
+
+            <h3>Paginate results</h3>
+            <pre><code>curl http://localhost:3000/posts?_page=1&_limit=2</code></pre>
+
+            <h3>Create a new post (mocked)</h3>
+            <pre><code>curl -X POST http://localhost:3000/posts \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": 1,
+    "title": "My new post",
+    "body": "This is the content of my post"
+  }'</code></pre>
+
+            <h3>Update a post (PUT - mocked)</h3>
+            <pre><code>curl -X PUT http://localhost:3000/posts/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": 1,
+    "title": "Updated title",
+    "body": "Updated body"
+  }'</code></pre>
+
+            <h3>Patch a post (PATCH - mocked)</h3>
+            <pre><code>curl -X PATCH http://localhost:3000/posts/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Partially updated title"
+  }'</code></pre>
+
+            <h3>Delete a post (mocked)</h3>
+            <pre><code>curl -X DELETE http://localhost:3000/posts/1</code></pre>
+
+            <h3>Add artificial delay</h3>
+            <pre><code>curl http://localhost:3000/posts?_delay=2000</code></pre>
+
+            <h2>CORS Support</h2>
+            <p>
+                All API endpoints support CORS with <code>Access-Control-Allow-Origin: *</code>,
+                making them accessible from any domain. This is perfect for frontend development and testing.
+            </p>
+
+            <h2>Tools & Downloads</h2>
+            <p>Download the Postman collection to quickly test all API endpoints:</p>
+            <div style="margin: 20px 0;">
+                <a href="/static/JSONPlaceHolderClone.postman_collection.json"
+                   download="JSONPlaceHolderClone.postman_collection.json"
+                   style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; transition: opacity 0.2s;"
+                   onmouseover="this.style.opacity='0.9'"
+                   onmouseout="this.style.opacity='1'">
+                    Download Postman Collection
+                </a>
+            </div>
+            <p style="font-size: 0.9em; color: #666;">
+                Import this collection into Postman to access pre-configured requests for all API endpoints.
+                The collection includes examples for all CRUD operations across all resource types.
+            </p>
+
+            <h2>Response Format</h2>
+            <p>All API responses use <code>Content-Type: application/json</code> with UTF-8 encoding.</p>
+
+            <h3>Success Response</h3>
+            <p>Successful requests return the requested resource(s) with appropriate HTTP status codes:</p>
+            <ul>
+                <li><strong>200 OK</strong>: GET, PUT, PATCH, DELETE operations</li>
+                <li><strong>201 Created</strong>: POST operations</li>
+            </ul>
+
+            <h3>Error Response</h3>
+            <p>Errors return a JSON object with an error message:</p>
+            <pre><code>{
+  "error": "not found"
+}</code></pre>
+            <ul>
+                <li><strong>400 Bad Request</strong>: Invalid ID or malformed JSON</li>
+                <li><strong>404 Not Found</strong>: Resource does not exist</li>
+            </ul>
+
+            <h2>Important Notes</h2>
+            <ul>
+                <li>All data is hard-coded and static - only 5 items exist per resource type</li>
+                <li>Write operations (POST, PUT, PATCH, DELETE) return mocked responses but do not persist data</li>
+                <li>POST operations always return a new ID of 6 (since we have 5 hard-coded items)</li>
+                <li>No authentication or rate limiting is implemented</li>
+                <li>This API is intended for development and testing purposes only</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 40px 20px; color: #666;">
+        <p>Built with Go using the Chi router</p>
+    </footer>
+</body>
+</html>

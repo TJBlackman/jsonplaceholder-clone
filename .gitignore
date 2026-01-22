@@ -1,0 +1,84 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Build output
+/server
+/cmd/server/server
+/bin/
+/build/
+/dist/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# IDE - IntelliJ / GoLand
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# IDE - Vim
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# OS - macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# OS - Windows
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Air - Live reload for Go apps
+.air.toml
+
+# Compiled binary (project-specific)
+jsonplaceholder-clone
+
+# Claude AI
+.claude/
