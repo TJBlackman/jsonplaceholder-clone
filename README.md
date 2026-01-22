@@ -60,9 +60,7 @@ This project is a faithful clone of JSONPlaceholder, implemented in Go using the
 
 ```
 jsonplaceholder.trevorblackman.dev/
-├── cmd/
-│   └── server/
-│       └── main.go              # Application entry point
+├── main.go                      # Application entry point
 ├── internal/
 │   ├── data/
 │   │   └── data.go              # Static data and lookup functions
@@ -345,7 +343,7 @@ go mod download
 3. **Run the server**
 
 ```bash
-go run cmd/server/main.go
+go run .
 ```
 
 The server will start on `http://localhost:3000`
@@ -370,7 +368,7 @@ curl -X POST http://localhost:3000/posts \
 Set the `PORT` environment variable:
 
 ```bash
-PORT=8080 go run cmd/server/main.go
+PORT=8080 go run .
 ```
 
 ---
@@ -793,7 +791,7 @@ The server can handle thousands of requests per second on modest hardware.
 **Solution**: Change the port using the `PORT` environment variable:
 
 ```bash
-PORT=8080 go run cmd/server/main.go
+PORT=8080 go run .
 ```
 
 ### CORS errors in browser
@@ -810,7 +808,7 @@ r.Use(middleware.CORS)
 
 **Problem**: Router not properly initialized
 
-**Solution**: Check that `router.New()` is called in `cmd/server/main.go` and all routes are registered in `internal/router/router.go`
+**Solution**: Check that `router.New()` is called in `main.go` and all routes are registered in `internal/router/router.go`
 
 ### JSON parsing errors
 

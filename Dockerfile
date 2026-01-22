@@ -7,10 +7,7 @@ RUN go mod download
 
 COPY . .
 
-# Copy static files to cmd/server for embedding
-RUN cp -r static cmd/server/
-
-RUN CGO_ENABLED=0 GOOS=linux go build -o server ./cmd/server
+RUN CGO_ENABLED=0 GOOS=linux go build -o server .
 
 FROM alpine:3.19
 

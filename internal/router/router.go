@@ -19,6 +19,9 @@ func New() chi.Router {
 	// Static landing page
 	r.Get("/", handlers.ServeIndex)
 
+	// Static files (e.g., Postman collection)
+	r.Get("/static/*", handlers.ServeStaticFile)
+
 	// API routes with JSON content type
 	r.Route("/posts", func(r chi.Router) {
 		r.Use(middleware.JSONContentType)
