@@ -1,3 +1,7 @@
+# docker build -t jsonplaceholder-clone:1.0.0 .
+# docker save jsonplaceholder-clone:1.0.0 -o jsonplaceholder-clone_1.0.0.tar
+# docker load -i jsonplaceholder-clone_1.0.0.tar
+
 FROM golang:1.25-alpine AS builder
 
 WORKDIR /app

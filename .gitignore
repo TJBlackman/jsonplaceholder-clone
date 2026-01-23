@@ -81,3 +81,6 @@ jsonplaceholder-clone
 
 # Claude AI
 .claude/
+
+# custom 
+*.tar

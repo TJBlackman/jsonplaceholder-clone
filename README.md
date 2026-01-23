@@ -707,12 +707,12 @@ JSON Response
 ### Building the Image
 
 ```bash
-docker build -t jsonplaceholder-clone .
+docker build -t jsonplaceholder-clone:1.0.0 .
 ```
 
 The Dockerfile uses a multi-stage build:
 
-- **Stage 1 (builder)**: Compiles the Go binary in a golang:1.23-alpine image
+- **Stage 1 (builder)**: Compiles the Go binary in a golang:1.25-alpine image
 - **Stage 2 (runtime)**: Copies binary to a minimal alpine:3.19 image
 
 This results in a tiny final image (~15MB) with only the compiled binary.
@@ -758,90 +758,6 @@ docker-compose up -d
 | Variable | Default | Description                |
 | -------- | ------- | -------------------------- |
 | `PORT`   | `3000`  | Port the server listens on |
-
----
-
-## Performance
-
-### Benchmarks
-
-Without the `_delay` parameter, responses are extremely fast:
-
-- **List operations**: < 1ms
-- **Single item lookup**: < 0.5ms
-- **Create/Update/Delete**: < 1ms
-
-The server can handle thousands of requests per second on modest hardware.
-
-### Optimization Tips
-
-1. **Disable logging** in production by removing the `chimw.Logger` middleware
-2. **Use HTTP/2** by serving with TLS
-3. **Add caching headers** for static resources
-4. **Rate limiting** can be added via custom middleware if needed
-
----
-
-## Troubleshooting
-
-### Server won't start
-
-**Problem**: Port already in use
-
-**Solution**: Change the port using the `PORT` environment variable:
-
-```bash
-PORT=8080 go run .
-```
-
-### CORS errors in browser
-
-**Problem**: Preflight requests failing
-
-**Solution**: The CORS middleware should handle this automatically. Verify the middleware is registered:
-
-```go
-r.Use(middleware.CORS)
-```
-
-### 404 for all routes
-
-**Problem**: Router not properly initialized
-
-**Solution**: Check that `router.New()` is called in `main.go` and all routes are registered in `internal/router/router.go`
-
-### JSON parsing errors
-
-**Problem**: Request body not properly formatted
-
-**Solution**: Ensure `Content-Type: application/json` header is set and body is valid JSON:
-
-```bash
-curl -X POST http://localhost:3000/posts \
-  -H "Content-Type: application/json" \
-  -d '{"userId":1,"title":"Test","body":"Test body"}'
-```
-
----
-
-## Contributing
-
-This is a personal project, but feedback and suggestions are welcome via GitHub issues.
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes
-4. Test locally
-5. Submit a pull request
-
-### Code Style
-
-- Follow standard Go conventions
-- Use `gofmt` to format code
-- Add comments for exported functions
-- Keep handlers simple and consistent
 
 ---
 
