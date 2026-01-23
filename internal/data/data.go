@@ -106,43 +106,43 @@ var Users = []models.User{
 }
 
 var Posts = []models.Post{
-	{ID: 1, UserID: 1, Title: "sunt aut facere repellat provident occaecati", Body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"},
-	{ID: 2, UserID: 1, Title: "qui est esse", Body: "est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla"},
-	{ID: 3, UserID: 2, Title: "ea molestias quasi exercitationem repellat", Body: "et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut"},
-	{ID: 4, UserID: 2, Title: "eum et est occaecati", Body: "ullam et saepe reiciendis voluptatem adipisci sit amet autem assumenda provident rerum culpa quis hic commodi nesciunt rem tenetur doloremque ipsam iure quis sunt voluptatem rerum illo velit"},
-	{ID: 5, UserID: 3, Title: "nesciunt quas odio", Body: "repudiandae veniam quaerat sunt sed alias aut fugiat sit autem sed est voluptatem omnis possimus esse voluptatibus quis est aut tenetur dolor neque"},
+	{ID: 1, UserID: 1, Title: "Migrating from REST to gRPC for Internal Services", Body: "We recently shifted our microservices communication to gRPC to leverage Protobuf serialization. The performance gains in high-throughput scenarios have been significant compared to our old JSON over HTTP setup."},
+	{ID: 2, UserID: 1, Title: "Why We Use Go for High-Concurrency Backend Systems", Body: "Go's goroutines and channels make it incredibly easy to handle thousands of concurrent requests without the overhead of traditional threading. The runtime scheduler does a great job of managing CPU resources efficiently."},
+	{ID: 3, UserID: 2, Title: "Optimizing TypeScript Monorepos with Nx", Body: "Managing multiple TypeScript packages can be a headache. Nx has helped us reduce build times via computation caching and improved our developer experience with better dependency graphing."},
+	{ID: 4, UserID: 2, Title: "The Case for Functional Programming in Modern JS", Body: "Even without a fully functional language, using patterns like immutability and pure functions in TypeScript leads to more predictable and testable codebases. It drastically reduces side-effect related bugs."},
+	{ID: 5, UserID: 3, Title: "Handling Database Migrations in Distributed Environments", Body: "Running migrations becomes tricky when you have multiple instances of a service scaling horizontally. We've adopted a pattern of ensuring migrations are always backward compatible to prevent downtime during deployments."},
 }
 
 var Comments = []models.Comment{
-	{ID: 1, PostID: 1, Name: "id labore ex et quam laborum", Email: "Eliseo@gardner.biz", Body: "laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium"},
-	{ID: 2, PostID: 1, Name: "quo vero reiciendis velit similique earum", Email: "Jayne_Kuhic@sydney.com", Body: "est natus enim nihil est dolore omnis voluptatem numquam et omnis occaecati quod ullam at voluptatem error expedita pariatur nihil sint nostrum voluptatem reiciendis et"},
-	{ID: 3, PostID: 2, Name: "odio adipisci rerum aut animi", Email: "Nikita@garfield.biz", Body: "quia molestiae reprehenderit quasi aspernatur aut expedita occaecati aliquam eveniet laudantium omnis quibusdam delectus saepe quia accusamus maiores nam est cum et ducimus et vero voluptates excepturi deleniti ratione"},
-	{ID: 4, PostID: 2, Name: "alias odio sit", Email: "Lew@alysha.tv", Body: "non et atque occaecati deserunt quas accusantium unde odit nobis qui voluptatem quia voluptas consequuntur itaque dolor et qui rerum deleniti ut occaecati"},
-	{ID: 5, PostID: 3, Name: "vero eaque aliquid doloribus et culpa", Email: "Hayden@althea.biz", Body: "harum non quasi et ratione tempore iure ex voluptates in ratione harum architecto fugit inventore cupiditate voluptates magni quo et"},
+	{ID: 1, PostID: 1, Name: "Technical Query on Protobuf", Email: "dev.lead@techcorp.io", Body: "Great write-up. Did you face any challenges with browser-based clients needing to communicate with these gRPC services, or are you using gRPC-Web?"},
+	{ID: 2, PostID: 1, Name: "Performance Benchmarks", Email: "sre_eng@cloudscale.net", Body: "I'd love to see some actual latency numbers. We've been considering a similar move but the overhead of maintaining proto files is a concern for our team."},
+	{ID: 3, PostID: 2, Name: "Goroutine Management", Email: "go_enthusiast@gopher.org", Body: "Completely agree. One thing to watch out for is goroutine leaks when using unbuffered channels without proper context cancellation."},
+	{ID: 4, PostID: 2, Name: "Comparison with Node.js", Email: "node_fan@jsland.com", Body: "While Go is fast, the ecosystem in Node for quick prototyping is still hard to beat. Do you find the strictly typed nature of Go slows down your initial development phase?"},
+	{ID: 5, PostID: 3, Name: "Nx vs Turbo", Email: "frontend_arch@webstack.sh", Body: "We just switched from Lerna to Nx and the caching is a game changer. Have you tried Turborepo as well, or did Nx just fit your requirements better?"},
 }
 
 var Albums = []models.Album{
-	{ID: 1, UserID: 1, Title: "quidem molestiae enim"},
-	{ID: 2, UserID: 1, Title: "sunt qui excepturi placeat culpa"},
-	{ID: 3, UserID: 2, Title: "omnis laborum odio"},
-	{ID: 4, UserID: 2, Title: "non esse culpa molestiae omnis sed optio"},
-	{ID: 5, UserID: 3, Title: "eaque aut omnis a"},
+	{ID: 1, UserID: 1, Title: "Echoes of the Silent Valley"},
+	{ID: 2, UserID: 1, Title: "Fragments of a Lucid Dream"},
+	{ID: 3, UserID: 2, Title: "The Persistence of Twilight"},
+	{ID: 4, UserID: 2, Title: "Symphony of Rust and Gold"},
+	{ID: 5, UserID: 3, Title: "Shadows on the Marble Floor"},
 }
 
 var Photos = []models.Photo{
-	{ID: 1, AlbumID: 1, Title: "accusamus beatae ad facilis cum similique qui sunt", URL: "https://via.placeholder.com/600/92c952", ThumbnailURL: "https://via.placeholder.com/150/92c952"},
-	{ID: 2, AlbumID: 1, Title: "reprehenderit est deserunt velit ipsam", URL: "https://via.placeholder.com/600/771796", ThumbnailURL: "https://via.placeholder.com/150/771796"},
-	{ID: 3, AlbumID: 2, Title: "officia porro iure quia iusto qui ipsa ut modi", URL: "https://via.placeholder.com/600/24f355", ThumbnailURL: "https://via.placeholder.com/150/24f355"},
-	{ID: 4, AlbumID: 2, Title: "culpa odio esse rerum omnis laboriosam voluptate repudiandae", URL: "https://via.placeholder.com/600/d32776", ThumbnailURL: "https://via.placeholder.com/150/d32776"},
-	{ID: 5, AlbumID: 3, Title: "natus nisi omnis corporis facere molestiae rerum in", URL: "https://via.placeholder.com/600/f66b97", ThumbnailURL: "https://via.placeholder.com/150/f66b97"},
+	{ID: 1, AlbumID: 1, Title: "accusamus beatae ad facilis cum similique qui sunt", URL: "https://placehold.co/600x600/92c952/white", ThumbnailURL: "https://placehold.co/150x150/92c952/white"},
+	{ID: 2, AlbumID: 1, Title: "reprehenderit est deserunt velit ipsam", URL: "https://placehold.co/600x600/771796/white", ThumbnailURL: "https://placehold.co/150x150/771796/white"},
+	{ID: 3, AlbumID: 2, Title: "officia porro iure quia iusto qui ipsa ut modi", URL: "https://placehold.co/600x600/24f355/white", ThumbnailURL: "https://placehold.co/150x150/24f355/white"},
+	{ID: 4, AlbumID: 2, Title: "culpa odio esse rerum omnis laboriosam voluptate repudiandae", URL: "https://placehold.co/600x600/d32776/white", ThumbnailURL: "https://placehold.co/150x150/d32776/white"},
+	{ID: 5, AlbumID: 3, Title: "natus nisi omnis corporis facere molestiae rerum in", URL: "https://placehold.co/600x600/f66b97/white", ThumbnailURL: "https://placehold.co/150x150/f66b97/white"},
 }
 
 var Todos = []models.Todo{
-	{ID: 1, UserID: 1, Title: "delectus aut autem", Completed: false},
-	{ID: 2, UserID: 1, Title: "quis ut nam facilis et officia qui", Completed: true},
-	{ID: 3, UserID: 2, Title: "fugiat veniam minus", Completed: false},
-	{ID: 4, UserID: 2, Title: "et porro tempora", Completed: true},
-	{ID: 5, UserID: 3, Title: "laboriosam mollitia et enim quasi adipisci quia provident illum", Completed: false},
+	{ID: 1, UserID: 1, Title: "Implement JWT authentication middleware", Completed: false},
+	{ID: 2, UserID: 1, Title: "Refactor database connection pool settings", Completed: true},
+	{ID: 3, UserID: 2, Title: "Write unit tests for the Go service layer", Completed: false},
+	{ID: 4, UserID: 2, Title: "Optimize TypeScript type definitions for API responses", Completed: true},
+	{ID: 5, UserID: 3, Title: "Fix memory leak in background worker routine", Completed: false},
 }
 
 // GetPostByID returns a post by ID or nil if not found
