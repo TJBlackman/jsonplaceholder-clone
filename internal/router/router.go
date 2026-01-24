@@ -22,6 +22,12 @@ func New() chi.Router {
 	// Static files (e.g., Postman collection)
 	r.Get("/static/*", handlers.ServeStaticFile)
 
+	// Echo route
+	r.Route("/api/echo", func(r chi.Router) {
+		r.Use(middleware.JSONContentType)
+		r.Get("/", handlers.Echo)
+	})
+
 	// API routes with JSON content type
 	r.Route("/posts", func(r chi.Router) {
 		r.Use(middleware.JSONContentType)
